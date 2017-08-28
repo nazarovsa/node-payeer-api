@@ -30,23 +30,11 @@ function Payeer(accountData) {
 
     this.transfer = function (requestOptions, callback) {
         var options = {
-            url: this.postURI,
+            url: this.postURI + '?transfer',
             headers: this.headers,
-            qs: {
-                account: this.accountData.account,
-                apiId: this.accountData.apiId,
-                apiPass: this.accountData.apiPass,
-                action: 'transfer',
-                curIn: requestOptions.curIn,
-                sum: requestOptions.sum,
-                curOut: requestOptions.curOut,
-                to: requestOptions.to,
-                comment: requestOptions.comment,
-                anonim: requestOptions.anonim || '',
-                protect: requestOptions.protect || '',
-                protectPeriod: requestOptions.protectPeriod || '',
-                protectCode: requestOptions.protectCode || ''
-            }
+            body: 'account=' + this.accountData.account + '&apiId=' + this.accountData.apiId + '&apiPass=' + this.accountData.apiPass + '&action=transfer' + 
+            '&comment=' + requestOptions.comment + '&sum=' + requestOptions.sum + '&curIn=' + requestOptions.curIn + 
+            '&curOut=' + requestOptions.curOut + '&to=' + requestOptions.to,
         }
         request.post(options, (error, response, body) => {
             callback(JSON.parse(error), JSON.parse(body));
@@ -79,7 +67,7 @@ function Payeer(accountData) {
         var options = {
             url: this.postURI + '?output',
             headers: this.headers,
-            body: 'account=' + this.accountData.account + '&apiId=' + this.accountData.apiId + '&apiPass=' + this.accountData.apiPass + '&action=initOutput' + '&ps=' + requestOptions.ps + '&sumIn=' + requestOptions.sumIn + '&curIn=' + requestOptions.curIn + '&curOut=' + requestOptions.curOut + '&param_ACCOUNT_NUMBER=' + requestOptions.accountNumber
+            body: 'account=' + this.accountData.account + '&apiId=' + this.accountData.apiId + '&apiPass=' + this.accountData.apiPass + '&action=output' + '&ps=' + requestOptions.ps + '&sumIn=' + requestOptions.sumIn + '&curIn=' + requestOptions.curIn + '&curOut=' + requestOptions.curOut + '&param_ACCOUNT_NUMBER=' + requestOptions.accountNumber
         }
         request.post(options, (error, response, body) => {
             callback(JSON.parse(error), JSON.parse(body));
@@ -92,10 +80,20 @@ var payoptions = {
     apiId: '391715809',
     apiPass: '4ckgo8fW',
     ps: '26808',
-    sumIn: '10',
+    sumIn: '10.00',
     curIn: 'RUB',
     curOut: 'RUB',
     accountNumber: '79199617067'
+}
+
+var transferoptions = {
+    account: 'P67147160',
+    apiId: '391715809',
+    apiPass: '4ckgo8fW',
+    sum: '1.00',
+    curIn: 'RUB',
+    curOut: 'RUB',
+    to: 'wm.15@bk.ru'
 }
 
 var options = {
@@ -106,6 +104,10 @@ var options = {
 
 var Client = new Payeer(options);
 
+Client.transfer(transferoptions, (err, data) => {
+    console.log(err);
+    console.log(data);
+})  
 /* Client.payoutCheck(payoptions, (err, data) => {
     console.log(err);
     console.log(data);
