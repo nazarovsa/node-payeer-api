@@ -1,5 +1,4 @@
 var request = require('request');
-var fs = require('fs');
 
 function Payeer(accountData) {
     this.accountData = accountData;
@@ -74,48 +73,6 @@ function Payeer(accountData) {
         });
     }
 }
-
-var payoptions = {
-    account: 'P67147160',
-    apiId: '391715809',
-    apiPass: '4ckgo8fW',
-    ps: '26808',
-    sumIn: '10.00',
-    curIn: 'RUB',
-    curOut: 'RUB',
-    accountNumber: '79199617067'
-}
-
-var transferoptions = {
-    account: 'P67147160',
-    apiId: '391715809',
-    apiPass: '4ckgo8fW',
-    sum: '1.00',
-    curIn: 'RUB',
-    curOut: 'RUB',
-    to: 'wm.15@bk.ru'
-}
-
-var options = {
-    account: 'P67147160',
-    apiId: '391715809',
-    apiPass: '4ckgo8fW'
-};
-
-var Client = new Payeer(options);
-
-Client.transfer(transferoptions, (err, data) => {
-    console.log(err);
-    console.log(data);
-})  
-/* Client.payoutCheck(payoptions, (err, data) => {
-    console.log(err);
-    console.log(data);
-})  */
-
-/* Client.getPaymentSystems((err, data) => {
-    console.log(data);
-}); */
 
 module.exports = {
     Payeer: Payeer
