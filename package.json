@@ -1,0 +1,14 @@
+{
+    "name": "node-payeer-api",
+    "version": "1.0.0",
+    "main": "index.js",
+    "dependencies": {
+      "request": "2.81.0"
+    },
+    "keywords": [
+      "Payeer",
+      "Wallet"
+    ],
+    "author": "Sergey Nazarov, insight.appdev@gmail.com"
+  }
+  
