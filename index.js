@@ -72,6 +72,12 @@ function Payeer(accountData) {
             callback(JSON.parse(error), JSON.parse(body));
         });
     }
+
+    this.getCommission = function (ps, currency, callback) {
+        Client.getPaymentSystems((err, data) => {
+            callback(err, data.list[ps].gate_commission[currency], data.list[ps].commission_site_percent, data.list[ps].sum_min[currency], data.list[ps].sum_max[currency]);
+        });
+    }
 }
 
 module.exports = {
