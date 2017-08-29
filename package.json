@@ -1,6 +1,6 @@
 {
   "name": "node-payeer-api",
-  "version": "1.0.1",
+  "version": "1.0.11",
   "main": "index.js",
   "dependencies": {
     "request": "2.81.0"
