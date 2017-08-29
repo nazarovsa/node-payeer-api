@@ -5,7 +5,7 @@ Official [documentation](http://docs.payeercom.apiary.io/#introduction/) for Pay
 Get started
 ----------------
 ```
-npm install node-qiwi-api
+npm install node-payeer-api
 ```
 Init payeer client
 ```js
